@@ -1,0 +1,16 @@
+{
+    "resources": {
+        "author": {
+            "url_base": "authors",
+            "slug": "name",
+            "slug_transform": "snakecase",
+            "template": "author2"
+        }
+    },
+    "output_dir": "./out",
+    "template_dir": "./src",
+    "contentful": {
+        "access_token": "<token here>",
+        "space_id": "<space id here>"
+    }
+}
