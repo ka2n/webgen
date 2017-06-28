@@ -43,12 +43,7 @@ export class Builder {
             const typeName = type.name.toLowerCase()
             const cnf = config.Resources[typeName] || {};
 
-            let templatePaths = [
-                typeName
-            ]
-            if (cnf.template) {
-                templatePaths.unshift(cnf.template)
-            }
+            let templatePaths = cnf.template ? [cnf.template] : [typeName]
 
             const url_base = cnf.url_base || _.snakeCase(typeName)
 
@@ -68,16 +63,23 @@ export class Builder {
                 const local_path = remote_path + "/index.html"
 
                 // Templates
-                let templates = _.clone(templatePaths)
+                let templates = templatePaths
                 if (cnf.template) {
                     const ext = path.extname(cnf.template)
                     const base = path.basename(cnf.template, ext)
-
-                    templates.unshift(base + '_' + slug + ext)
-                    templates.unshift(base + '_' + entry.sys.id + ext)
+                    templates = [
+                        base + '_' + slug + ext,
+                        base + '_' + entry.sys.id + ext,
+                        ...templates
+                    ]
+                } else {
+                    templates = [
+                        typeName + '_' + slug,
+                        typeName + '_' + entry.sys.id,
+                        ...templates
+                    ]
                 }
-                templates.push(typeName + '_' + slug)
-                templates.push(typeName + '_' + entry.sys.id)
+
                 templates = _.uniq(templates)
 
                 templates = templates.map(p => {
