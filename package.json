@@ -1,0 +1,46 @@
+{
+	"name": "webgen",
+	"version": "0.1.0",
+	"description": "",
+	"repository": "",
+	"license": "MIT",
+	"scripts": {
+		"clean": "rimraf dist",
+		"build": "npm run clean && tsc --pretty",
+		"test": "npm run build && mocha --compilers ts:ts-node/register --recursive test/**/*-spec.ts",
+		"watch": "npm run build -- --watch",
+		"watch:test": "npm run test -- --watch"
+	},
+	"author": {
+		"name": "Katsuma Ito",
+		"email": "katsumai@gmail.com"
+	},
+	"main": "dist/bin/app.js",
+	"typings": "dist/bin/app.d.ts",
+	"bin": {
+		"webgen": "bin/webgen"
+	},
+	"files": [
+		"bin",
+		"dist"
+	],
+	"devDependencies": {
+		"@types/commander": "^2.3.31",
+		"@types/node": "^7.0.5",
+		"@types/lodash": "^4.14.67",
+		"@types/markdown-it": "^0.0.2",
+		"@types/mkdirp": "^0.3.29",
+		"@types/pug": "^2.0.4",
+		"rimraf": "^2.6.1",
+		"ts-node": "^3.0.4",
+		"typescript": "^2.2.1"
+	},
+	"dependencies": {
+		"commander": "^2.9.0",
+		"contentful": "^4.5.0",
+		"jstransformer-markdown-it": "^2.0.0",
+		"lodash": "^4.17.4",
+		"mkdirp": "^0.5.1",
+		"pug": "^2.0.0-rc.2"
+	}
+}

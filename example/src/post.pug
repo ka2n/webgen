@@ -1,0 +1,7 @@
+extends layout
+
+block page_title
+    = entry.fields.title
+
+block body
+    != markdown(entry.fields.body)

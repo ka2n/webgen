@@ -1,7 +1,0 @@
-html
-    head
-        title = content_for?(:page_title) and "Site: #{yield :page_title}" or content_for?(:title) and yield :title or "Site"
-    body
-        h1 Layout
-        div
-            = block :body
